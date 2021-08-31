@@ -8,7 +8,7 @@ namespace TGC.MonoGame.TP
     /// <summary>
     /// Una camara que sigue objetos
     /// </summary>
-    class FollowCamera
+    public class FollowCamera
     {
         private const float AxisDistanceToTarget = 1000f;
 

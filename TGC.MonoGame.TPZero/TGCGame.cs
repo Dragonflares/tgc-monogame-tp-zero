@@ -22,9 +22,12 @@ namespace TGC.MonoGame.TP
         private GraphicsDeviceManager Graphics { get; }
         private CityScene City { get; set; }
         private Model CarModel { get; set; }
-        private Matrix CarWorld { get; set; }
-        private FollowCamera FollowCamera { get; set; }
+        public Matrix CarWorld { get; set; }
+        public FollowCamera FollowCamera { get; set; }
+        private Car PlayerCar { get; set; }
 
+        private Vector3 CarPosition;
+        public float ElapsedTime;
 
         /// <summary>
         ///     Constructor del juego
@@ -64,6 +67,13 @@ namespace TGC.MonoGame.TP
 
             // Configuro la matriz de mundo del auto
             CarWorld = Matrix.Identity;
+
+            CarPosition = new Vector3(0f, 1f, 0f);
+            PlayerCar = new Car(CarPosition, new Vector3(0f, 0f, 1f),4f, this);
+            PlayerCar.ModelName = "scene/car";
+            PlayerCar.LoadContent();
+
+
 
             base.Initialize();
         }
@@ -114,7 +124,7 @@ namespace TGC.MonoGame.TP
 
             // Dibujo la ciudad
             City.Draw(gameTime, FollowCamera.View, FollowCamera.Projection);
-
+            PlayerCar.Draw();
             // El dibujo del auto debe ir aca
 
             base.Draw(gameTime);
